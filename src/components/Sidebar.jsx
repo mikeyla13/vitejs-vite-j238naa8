@@ -5,48 +5,48 @@ import { Link, useLocation } from 'react-router-dom';
 const NAV_ITEMS = [
   {
     to: '/seccion1',
-    label: 'Sección 1',
-    icon: '📁',
+    label: 'Presentación',
+    icon: '✨',
     count: 3,
     matchPaths: ['/seccion1', '/'],
   },
   {
     to: '/seccion2',
-    label: 'Sección 2',
-    icon: '📊',
-    count: 1,
+    label: 'Servicios',
+    icon: '🎨',
+    count: 6,
     matchPaths: ['/seccion2'],
   },
   {
     to: '/seccion3',
-    label: 'Sección 3',
-    icon: '🔧',
-    count: 0,
+    label: 'Reseñas',
+    icon: '⭐',
+    count: 4,
     matchPaths: ['/seccion3'],
   },
   {
     to: '/seccion4',
-    label: 'Sección 4',
-    icon: '⭐',
-    count: 2,
+    label: 'Contacto',
+    icon: '📩',
+    count: 0,
     matchPaths: ['/seccion4'],
   },
 ];
 
-const STUDENT = { name: 'Nombre Apellido', initials: 'NA' };
+const STUDENT = { name: 'Micaela Bondancia', initials: 'MB' };
 
 // ─── Paleta de grises ─────────────────────────────────────────────────────────
 const G = {
-  900: '#f0efed', // ← fondo principal
-  800: '#e4e3e0',
-  700: '#d0cfcc',
-  600: '#b0afab',
-  500: '#888784',
-  400: '#5e5d5a',
-  300: '#3a3938',
-  200: '#2a2928',
-  100: '#1a1918',
-  50: '#0f0e0e',
+  900: '#f5f0ff', // ← fondo principal
+  800: '#ede3ff',
+  700: '#d4bbff',
+  600: '#a67ce8',
+  500: '#7c4dbd',
+  400: '#5c2d9e',
+  300: '#3d1980',
+  200: '#280f60',
+  100: '#160840',
+  50:  '#0a0420',
 };
 
 // ─── NavItem ──────────────────────────────────────────────────────────────────

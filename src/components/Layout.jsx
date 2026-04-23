@@ -6,7 +6,7 @@ const layoutStyles = {
   width: '100vw', // ocupa todo el ancho de la ventana
   height: '100vh', // ocupa todo el alto de la ventana
   overflow: 'hidden', // evita scroll extra
-  fontFamily: 'Arial, sans-serif',
+  fontFamily: "'Inter', Arial, sans-serif",
 };
 
 const sidebarStyles = {
@@ -19,7 +19,7 @@ const mainContentStyles = {
   flexGrow: 1, // ocupa todo el espacio restante
   overflowY: 'auto', // scroll vertical solo en el contenido
   padding: '20px',
-  backgroundColor: '#f5f5f5',
+  backgroundColor: '#f5f0ff',
   boxSizing: 'border-box',
 };
 

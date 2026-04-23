@@ -1,16 +1,16 @@
 import React from 'react';
 
 const G = {
-  900: '#f0efed',
-  800: '#e4e3e0',
-  700: '#d0cfcc',
-  600: '#b0afab',
-  500: '#888784',
-  400: '#5e5d5a',
-  300: '#3a3938',
-  200: '#2a2928',
-  100: '#1a1918',
-  50: '#0f0e0e',
+  900: '#f5f0ff',
+  800: '#ede3ff',
+  700: '#d4bbff',
+  600: '#a67ce8',
+  500: '#7c4dbd',
+  400: '#5c2d9e',
+  300: '#3d1980',
+  200: '#280f60',
+  100: '#160840',
+  50:  '#0a0420',
 };
 
 // ─── Datos: los tres ejes (completar con texto real, máx 240 chars c/u) ───────
@@ -19,19 +19,19 @@ const EJES = [
     numero: '01',
     titulo: 'Mi experiencia con React',
     texto:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Con React cambié mi forma de enfocar el desarrollo. En materias anteriores construía páginas estáticas con HTML y CSS. Los componentes reutilizables y el flujo de datos con props hacen el código mucho más organizado y escalable.',
   },
   {
     numero: '02',
     titulo: 'Mi stack de IA',
     texto:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Usé Claude como asistente principal y ChatGPT para comparar soluciones. Claude me ayudó con lógica de componentes y corrección de errores; ChatGPT para generar textos y explorar variantes de estilos CSS en cada sección del proyecto.',
   },
   {
     numero: '03',
     titulo: 'Flujo de trabajo',
     texto:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Planifiqué la estructura en papel primero. Luego usé la IA con prompts específicos por sección, revisando cada respuesta antes de integrarla. Cuando surgía un error, le pasaba el mensaje de consola al chatbot para resolverlo rápido.',
   },
 ];
 
@@ -174,7 +174,7 @@ const Bienvenida = () => {
             color: G[50],
           }}
         >
-          Nombre Apellido
+          Micaela Bondancia
         </h1>
         <h2
           style={{

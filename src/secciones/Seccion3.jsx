@@ -1,216 +1,218 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React from 'react';
 
-export default function Seccion3({
-  interval = 4000,
-  width = '100%',
-  height = '400px',
-  showIndicators = true,
-  showArrows = true,
-  loop = true,
-}) {
-  // Imágenes dummy
-  const images = [
-    { src: 'https://picsum.photos/id/1018/800/400', alt: 'Paisaje 1' },
-    { src: 'https://picsum.photos/id/1015/800/400', alt: 'Paisaje 2' },
-    { src: 'https://picsum.photos/id/1016/800/400', alt: 'Paisaje 3' },
-  ];
+const G = {
+  900: '#f5f0ff',
+  800: '#ede3ff',
+  700: '#d4bbff',
+  600: '#a67ce8',
+  500: '#7c4dbd',
+  400: '#5c2d9e',
+  300: '#3d1980',
+  200: '#280f60',
+  100: '#160840',
+  50:  '#0a0420',
+};
 
-  const [index, setIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const timeoutRef = useRef(null);
-  const containerRef = useRef(null);
+const RESENAS = [
+  {
+    nombre: 'Valentina Torres',
+    rol: 'Emprendedora - Tienda Online',
+    estrellas: 5,
+    comentario:
+      'Micaela transformó completamente la imagen de mi tienda. El logo y el pack de redes que diseñó son exactamente lo que necesitaba. Recibí muchos comentarios positivos de mis clientes desde que cambié la identidad visual.',
+    avatar: 'VT',
+  },
+  {
+    nombre: 'Lucas Fernández',
+    rol: 'Músico Independiente',
+    estrellas: 5,
+    comentario:
+      'Contraté el servicio de edición de video para mis reels y el resultado superó todas mis expectativas. El estilo visual es muy profesional y coherente con mi música. Definitivamente voy a seguir trabajando con ella.',
+    avatar: 'LF',
+  },
+  {
+    nombre: 'Sofía Martínez',
+    rol: 'Coach de Bienestar',
+    estrellas: 5,
+    comentario:
+      'El branding completo que me hizo es impresionante. El manual de marca me ayuda a mantener la coherencia en todas mis plataformas. Muy recomendable, es detallista y entrega todo en tiempo y forma.',
+    avatar: 'SM',
+  },
+  {
+    nombre: 'Mateo Rodríguez',
+    rol: 'Fotógrafo Freelance',
+    estrellas: 4,
+    comentario:
+      'Contraté el diseño de mi landing page y quedé muy contento. El proceso fue claro y ágil, con propuestas antes de empezar. El único punto de mejora sería ampliar la cantidad de revisiones incluidas.',
+    avatar: 'MR',
+  },
+];
 
-  const length = images.length;
+const Stars = ({ cantidad }) => (
+  <div style={{ display: 'flex', gap: '3px', marginBottom: '12px' }}>
+    {[1, 2, 3, 4, 5].map((n) => (
+      <span
+        key={n}
+        style={{
+          fontSize: '16px',
+          color: n <= cantidad ? '#f59e0b' : G[700],
+        }}
+      >
+        ★
+      </span>
+    ))}
+  </div>
+);
 
-  const clearTimer = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  };
-
-  const goTo = useCallback(
-    (newIndex) => {
-      if (length === 0) return;
-      let i = newIndex;
-      if (i < 0) i = loop ? length - 1 : 0;
-      if (i >= length) i = loop ? 0 : length - 1;
-      setIndex(i);
-    },
-    [length, loop]
-  );
-
-  const next = useCallback(() => goTo(index + 1), [goTo, index]);
-  const prev = useCallback(() => goTo(index - 1), [goTo, index]);
-
-  // autoplay
-  useEffect(() => {
-    clearTimer();
-    if (!isPaused && length > 1) {
-      timeoutRef.current = setTimeout(() => {
-        next();
-      }, interval);
-    }
-    return clearTimer;
-  }, [index, isPaused, interval, length, next]);
-
-  // touch / swipe
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    let startX = 0;
-    let deltaX = 0;
-
-    const onTouchStart = (e) => {
-      startX = e.touches[0].clientX;
-    };
-    const onTouchMove = (e) => {
-      deltaX = e.touches[0].clientX - startX;
-    };
-    const onTouchEnd = () => {
-      if (Math.abs(deltaX) > 50) {
-        if (deltaX > 0) prev();
-        else next();
-      }
-      startX = 0;
-      deltaX = 0;
-    };
-
-    el.addEventListener('touchstart', onTouchStart);
-    el.addEventListener('touchmove', onTouchMove);
-    el.addEventListener('touchend', onTouchEnd);
-
-    return () => {
-      el.removeEventListener('touchstart', onTouchStart);
-      el.removeEventListener('touchmove', onTouchMove);
-      el.removeEventListener('touchend', onTouchEnd);
-    };
-  }, [next, prev]);
-
-  if (length === 0) {
-    return (
+const ResenaCard = ({ nombre, rol, estrellas, comentario, avatar }) => (
+  <div
+    style={{
+      flex: '1 1 300px',
+      backgroundColor: G[800],
+      borderRadius: '14px',
+      border: `1px solid ${G[700]}`,
+      padding: '28px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0',
+    }}
+  >
+    <Stars cantidad={estrellas} />
+    <p
+      style={{
+        fontSize: '14px',
+        color: G[400],
+        lineHeight: '1.75',
+        margin: '0 0 24px',
+        fontWeight: '300',
+        fontStyle: 'italic',
+        flex: 1,
+      }}
+    >
+      "{comentario}"
+    </p>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        paddingTop: '20px',
+        borderTop: `1px solid ${G[700]}`,
+      }}
+    >
       <div
         style={{
-          width,
-          height,
-          background: '#ddd',
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: G[700],
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          fontSize: '13px',
+          fontWeight: '700',
+          color: G[300],
+          flexShrink: 0,
+          letterSpacing: '0.5px',
         }}
       >
-        <p style={{ color: '#666' }}>No hay imágenes para mostrar.</p>
+        {avatar}
       </div>
-    );
-  }
-
-  return (
-    <div
-      ref={containerRef}
-      style={{
-        position: 'relative',
-        width,
-        height,
-        overflow: 'hidden',
-        borderRadius: '12px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-        background: '#000',
-      }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      {/* Imagen activa */}
-      {images.map((img, i) => (
-        <img
-          key={i}
-          src={img.src}
-          alt={img.alt}
+      <div>
+        <p
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            borderRadius: '10px',
-            opacity: i === index ? 1 : 0,
-            transition: 'opacity 0.6s ease',
-          }}
-        />
-      ))}
-
-      {/* Flechas */}
-      {showArrows && length > 1 && (
-        <>
-          <button
-            onClick={prev}
-            aria-label="Anterior"
-            style={{
-              position: 'absolute',
-              left: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'rgba(255,255,255,0.3)',
-              border: 'none',
-              borderRadius: '50%',
-              padding: '10px',
-              cursor: 'pointer',
-            }}
-          >
-            ◀
-          </button>
-
-          <button
-            onClick={next}
-            aria-label="Siguiente"
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'rgba(255,255,255,0.3)',
-              border: 'none',
-              borderRadius: '50%',
-              padding: '10px',
-              cursor: 'pointer',
-            }}
-          >
-            ▶
-          </button>
-        </>
-      )}
-
-      {/* Indicadores */}
-      {showIndicators && length > 1 && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '10px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            gap: '8px',
+            margin: 0,
+            fontSize: '14px',
+            fontWeight: '700',
+            color: G[100],
           }}
         >
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              aria-label={`Ir al slide ${i + 1}`}
-              style={{
-                width: '12px',
-                height: '12px',
-                borderRadius: '50%',
-                border: 'none',
-                cursor: 'pointer',
-                background: i === index ? '#fff' : 'rgba(255,255,255,0.5)',
-                transform: i === index ? 'scale(1.2)' : 'scale(1)',
-                transition: 'transform 0.2s ease',
-              }}
-            />
-          ))}
-        </div>
-      )}
+          {nombre}
+        </p>
+        <p
+          style={{
+            margin: '2px 0 0',
+            fontSize: '12px',
+            color: G[500],
+          }}
+        >
+          {rol}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+const Seccion3 = () => {
+  return (
+    <div
+      style={{
+        width: '100%',
+        minHeight: '100%',
+        backgroundColor: G[900],
+        padding: '48px 48px',
+        boxSizing: 'border-box',
+      }}
+    >
+      <div
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          border: `1px solid ${G[700]}`,
+          borderRadius: '20px',
+          padding: '4px 14px',
+          marginBottom: '16px',
+        }}
+      >
+        <span
+          style={{
+            fontSize: '10px',
+            fontWeight: '700',
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            color: G[500],
+          }}
+        >
+          Sección 3
+        </span>
+      </div>
+
+      <h2
+        style={{
+          color: G[50],
+          fontSize: 'clamp(1.6rem, 3vw, 2.4rem)',
+          fontWeight: '800',
+          margin: '0 0 8px',
+          letterSpacing: '-1px',
+        }}
+      >
+        Reseñas de Clientes
+      </h2>
+      <p
+        style={{
+          color: G[500],
+          fontSize: '14px',
+          margin: '0 0 36px',
+          fontWeight: '300',
+        }}
+      >
+        Lo que dicen quienes ya trabajaron conmigo
+      </p>
+
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '20px',
+        }}
+      >
+        {RESENAS.map((r) => (
+          <ResenaCard key={r.nombre} {...r} />
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default Seccion3;

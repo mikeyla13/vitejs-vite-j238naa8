@@ -9,29 +9,30 @@ import React from 'react';
 // no toques nada más del código.
 // ─────────────────────────────────────────────────────────────────────────────
 import fotoPerfil from '../assets/fotodeperfil.png';
-import portada from '../assets/portada.png';
 
 const G = {
-  900: '#f0efed',
-  800: '#e4e3e0',
-  700: '#d0cfcc',
-  600: '#b0afab',
-  500: '#888784',
-  400: '#5e5d5a',
-  300: '#3a3938',
-  200: '#2a2928',
-  100: '#1a1918',
-  50: '#0f0e0e',
+  900: '#f5f0ff',
+  800: '#ede3ff',
+  700: '#d4bbff',
+  600: '#a67ce8',
+  500: '#7c4dbd',
+  400: '#5c2d9e',
+  300: '#3d1980',
+  200: '#280f60',
+  100: '#160840',
+  50:  '#0a0420',
 };
 
 const PHOTO_SIZE = 110;
 const PHOTO_OVERLAP = 50;
 
 const SKILLS = [
-  'UX Design',
+  'Diseño Gráfico',
   'Comunicación Digital',
-  'Redacción',
-  'Trabajo en equipo',
+  'Programación',
+  'Adobe Suite',
+  'Redes Sociales',
+  'Administración',
 ];
 
 const SkillBadge = ({ label }) => (
@@ -115,10 +116,7 @@ const Perfil = () => {
               height: '180px',
               overflow: 'hidden',
               position: 'relative',
-              backgroundImage: `url(${portada})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundColor: G[700],
+              background: `linear-gradient(135deg, ${G[300]} 0%, ${G[500]} 50%, ${G[600]} 100%)`,
             }}
           >
             <div
@@ -153,7 +151,7 @@ const Perfil = () => {
                   color: G[400],
                 }}
               >
-                Estudiante
+                Diseño Freelance
               </span>
             </div>
           </div>
@@ -201,7 +199,7 @@ const Perfil = () => {
               letterSpacing: '-0.5px',
             }}
           >
-            Nombre y Apellido
+            Micaela Bondancia
           </h2>
           <p
             style={{
@@ -211,7 +209,7 @@ const Perfil = () => {
               fontWeight: '400',
             }}
           >
-            Estudiante de Lic. Comunicación Digital
+            Diseñadora Gráfica & Lic. Comunicación Digital
           </p>
           <p
             style={{
@@ -221,7 +219,7 @@ const Perfil = () => {
               letterSpacing: '0.3px',
             }}
           >
-            Buenos Aires, Argentina
+            Pilar, Buenos Aires
           </p>
 
           <div
@@ -233,9 +231,9 @@ const Perfil = () => {
               borderBottom: `1px solid ${G[700]}`,
             }}
           >
-            <StatItem value="4" label="Materias Cursando" />
-            <StatItem value="12" label="Materias Aprobadas" />
-            <StatItem value="2025" label="Año Cursada" />
+            <StatItem value="21" label="Años" />
+            <StatItem value="2" label="Año Cursada" />
+            <StatItem value="6" label="Servicios" />
           </div>
 
           <div

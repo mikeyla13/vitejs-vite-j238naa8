@@ -2,22 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const G = {
-  900: '#f0efed',
-  800: '#e4e3e0',
-  700: '#d0cfcc',
-  600: '#b0afab',
-  500: '#888784',
-  400: '#5e5d5a',
-  300: '#3a3938',
-  200: '#2a2928',
-  100: '#1a1918',
-  50: '#0f0e0e',
+  900: '#f5f0ff',
+  800: '#ede3ff',
+  700: '#d4bbff',
+  600: '#a67ce8',
+  500: '#7c4dbd',
+  400: '#5c2d9e',
+  300: '#3d1980',
+  200: '#280f60',
+  100: '#160840',
+  50:  '#0a0420',
 };
 
 const SECCIONES = [
-  { to: '/seccion2', numero: '02', label: 'Sección 2' },
-  { to: '/seccion3', numero: '03', label: 'Sección 3' },
-  { to: '/seccion4', numero: '04', label: 'Sección 4' },
+  { to: '/seccion2', numero: '02', label: 'Catálogo' },
+  { to: '/seccion3', numero: '03', label: 'Reseñas' },
+  { to: '/seccion4', numero: '04', label: 'Contacto' },
 ];
 
 const SeccionLink = ({ to, numero, label }) => {
@@ -193,7 +193,7 @@ const Seccion1 = () => {
             textTransform: 'uppercase',
           }}
         >
-          TechnoVia
+          MicaDesign Studio
         </p>
 
         {/* título */}
@@ -207,7 +207,7 @@ const Seccion1 = () => {
             color: G[50],
           }}
         >
-          Innovatio
+          Creatividad
         </h1>
         <h1
           style={{
@@ -219,7 +219,7 @@ const Seccion1 = () => {
             color: G[500],
           }}
         >
-          et Excellence
+          que Comunica
         </h1>
 
         {/* separador */}
@@ -254,8 +254,8 @@ const Seccion1 = () => {
             fontStyle: 'italic',
           }}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ofrezco servicios de diseño gráfico y comunicación visual para marcas,
+          emprendimientos y proyectos personales. Transformo ideas en identidades únicas y memorables.
         </p>
 
         {/* índice de secciones — misma línea */}
